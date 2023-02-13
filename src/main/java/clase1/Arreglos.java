@@ -38,16 +38,18 @@ public class Arreglos {
     }
 
     public static int[][] separarElementos(int numero, int[] arreglo) {
-        int[] arregloMenores = new int[arreglo.length];
         int[] arregloMayores = new int[arreglo.length];
+        int[] arregloMenores = new int[arreglo.length];
         int idxMenor = 0;
         int idxMayor = 0;
         for (int elemento : arreglo) {
-            if (Numeros.max(elemento, numero) != numero) {
+            if(Numeros.min(elemento, numero) < numero){
+                arregloMenores[idxMenor++] = elemento;
+            }else{
                 arregloMayores[idxMayor++] = elemento;
-            } else {
-                arregloMenores[idxMenor++] = Numeros.min(elemento, numero);
             }
+
+
         }
         int[][] resultado = new int[2][];
         resultado[0] = new int[idxMenor];

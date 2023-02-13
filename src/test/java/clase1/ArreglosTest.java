@@ -150,7 +150,7 @@ class ArreglosTest {
     public void separarElementosValorCeroArrelgoNegativoConElmentoCeroTest() {
         int numero = 0;
         int[] arreglo = {-4, -5, -6, 0, -1, -2, -3};
-        int[][] resultado = {{-4, -5, -6, 0, -1, -2, -3}, {}};
+        int[][] resultado = {{-4, -5, -6, -1, -2, -3}, {0}};
         assertArrayEquals(resultado, Arreglos.separarElementos(numero, arreglo));
     }
 
@@ -158,7 +158,7 @@ class ArreglosTest {
     public void separarElementosValorCeroArrelgoNegativoConValoresMixtosTest() {
         int numero = 0;
         int[] arreglo = {4, 5, 6, 0, -1, -2, -3};
-        int[][] resultado = {{0, -1, -2, -3}, {4, 5, 6}};
+        int[][] resultado = {{-1, -2, -3}, {4, 5, 6, 0}};
         assertArrayEquals(resultado, Arreglos.separarElementos(numero, arreglo));
     }
 
@@ -166,7 +166,7 @@ class ArreglosTest {
     public void separarElementosValorNegativoConArregloNegativoTest() {
         int numero = -7;
         int[] arreglo = {-9, -8, -7, -6, -5};
-        int[][] expected = {{-9, -8, -7}, {-6, -5}};
+        int[][] expected = {{-9, -8}, {-7, -6, -5}};
         assertArrayEquals(expected, Arreglos.separarElementos(numero, arreglo));
     }
 
@@ -190,7 +190,7 @@ class ArreglosTest {
     public void separarElementosValorNegativoConArregloMixtoTest() {
         int numero = -7;
         int[] arreglo = {-9, -8, -7, -6, -5, 3, 2, 1};
-        int[][] expected = {{-9, -8, -7}, {-6, -5, 3, 2, 1}};
+        int[][] expected = {{-9, -8}, { -7, -6, -5, 3, 2, 1}};
         assertArrayEquals(expected, Arreglos.separarElementos(numero, arreglo));
     }
 
@@ -203,7 +203,7 @@ class ArreglosTest {
     }
     @Test
     public void separarElementosValorPositivoConArregloNegativoYConteniendoElValorTest() {
-        int numero = 10;
+        int numero = 12;
         int[] arreglo = {-7, -8, -9, -10, -11, 10};
         int[][] expected = {{-7, -8, -9, -10, -11, 10}, {}};
         assertArrayEquals(expected, Arreglos.separarElementos(numero, arreglo));
@@ -211,8 +211,8 @@ class ArreglosTest {
     @Test
     public void separarElementosValorPositivoConArregloPositivoTest() {
         int numero = 9;
-        int[] arreglo = {7, 8, 9, 10, 11, 12};
-        int[][] expected = {{7, 8, 9}, {10, 11, 12}};
+        int[] arreglo = {6, 7, 8, 9, 10, 11, 12};
+        int[][] expected = {{6, 7, 8}, {9, 10, 11, 12}};
         assertArrayEquals(expected, Arreglos.separarElementos(numero, arreglo));
     }
     @Test
