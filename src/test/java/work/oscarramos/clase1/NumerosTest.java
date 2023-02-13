@@ -1,6 +1,12 @@
 package work.oscarramos.clase1;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,134 +14,86 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class NumerosTest {
     // pruebas de maximos
-    @Test
-    public void maxNumerosPositivosSegundoParametroMayorTest() {
 
-        assertEquals(6, Numeros.max(5, 6));
+    @ParameterizedTest
+    @MethodSource
+    public void maxTest(int numero1, int numero2, int resultado) {
+
+        assertEquals(resultado, Numeros.max(numero1, numero2));
     }
 
-    @Test
-    public void maxNumerosPositivosPrimerParametroMayorTest() {
+    private static Stream<Arguments> maxTest() {
+        return Stream.of(
+                Arguments.of(5, 6, 6),
+                Arguments.of(6, 5, 6),
+                Arguments.of(-6, 0, 0),
+                Arguments.of(2, 2, 2),
+                Arguments.of(-5, -2, -2)
 
-        assertEquals(6, Numeros.max(6, 5));
-    }
-
-    @Test
-    public void maxCeroNegativoTest() {
-
-        assertEquals(0, Numeros.max(-6, 0));
-    }
-
-    @Test
-    public void maxNumerosIgualesTest() {
-
-        assertEquals(2, Numeros.max(2, 2));
-    }
-
-    @Test
-    public void maxNumerosNegativoTest() {
-
-        assertEquals(-2, Numeros.max(-5, -2));
+        );
     }
 
     //pruebas de minimos
-    @Test
-    public void minNumerosPositivosSegundoParametroMenorTest() {
+    @ParameterizedTest
+    @MethodSource
+    public void minTest(int numero1, int numero2, int resultado) {
 
-        assertEquals(1, Numeros.min(1, 2));
+        assertEquals(resultado, Numeros.min(numero1, numero2));
     }
 
-    @Test
-    public void minNumerosPositivosPrimerParametroMenorTest() {
+    private static Stream<Arguments> minTest() {
+        return Stream.of(
+                Arguments.of(1, 2, 1),
+                Arguments.of(2, 1, 1),
+                Arguments.of(-8, 0, -8),
+                Arguments.of(8, 8, 8),
+                Arguments.of(-10, -12, -12)
 
-        assertEquals(1, Numeros.min(2, 1));
-    }
-
-    @Test
-    public void minCeroNegativoTest() {
-
-        assertEquals(-8, Numeros.min(-8, 0));
-    }
-
-    @Test
-    public void minNumerosIgualesTest() {
-
-        assertEquals(8, Numeros.min(8, 8));
-    }
-
-    @Test
-    public void minNumerosNegativoTest() {
-
-        assertEquals(-12, Numeros.min(-10, -12));
+        );
     }
 
     // pruebas de par
-    @Test
-    public void esParTest() {
-        assertTrue(Numeros.esPar(4));
+    @ParameterizedTest
+    @ValueSource(ints = {4, 0, -10})
+    public void esParVerdaderoTest(int number) {
+        assertTrue(Numeros.esPar(number));
     }
 
-    @Test
-    public void noEsParTest() {
-        assertFalse(Numeros.esPar(3));
-    }
-
-    @Test
-    public void CeroEsParTest() {
-        assertTrue(Numeros.esPar(0));
+    @ParameterizedTest
+    @ValueSource(ints = {3, -33, Integer.MAX_VALUE})
+    public void esParFalsoTest(int number) {
+        assertFalse(Numeros.esPar(number));
     }
 
     //pruebas de impar
-    @Test
-    public void esImpart() {
-        assertTrue(Numeros.esImpar(3));
+    @ParameterizedTest
+    @ValueSource(ints = {3, -33, Integer.MAX_VALUE})
+    public void esImparVerdaderoTest(int numero) {
+        assertTrue(Numeros.esImpar(numero));
     }
 
-    @Test
-    public void noEsImpart() {
-        assertFalse(Numeros.esImpar(10));
+    @ParameterizedTest
+    @ValueSource(ints = {2, -10, 0})
+    public void noEsImparFalsoTest(int numero) {
+        assertFalse(Numeros.esImpar(numero));
     }
+    @ParameterizedTest
+    @MethodSource
+    public void potenciaTest(int base, int exponente, double resultado) {
 
-    @Test
-    public void CeroNoEsImpart() {
-        assertFalse(Numeros.esImpar(0));
+        assertEquals(resultado, Numeros.potencia(base, exponente));
     }
 
     //pruebas de potencias
-    @Test
-    public void potenciaPositivosTest() {
-        assertEquals(8.0, Numeros.potencia(2, 3));
-
-    }
-
-    @Test
-    public void potenciaBaseNegativaTest() {
-        assertEquals(-8, Numeros.potencia(-2, 3));
-
-    }
-
-    @Test
-    public void potenciaExponenteNegativoTest() {
-        assertEquals(0.125, Numeros.potencia(2, -3));
-    }
-
-    @Test
-    public void potenciaNumerosNegativosTest() {
-        assertEquals(-0.125, Numeros.potencia(-2, -3));
-    }
-
-    @Test
-    public void portenciaBaseCeroTest() {
-        assertEquals(0, Numeros.potencia(0, 3));
-    }
-
-    @Test
-    public void portenciaExponenteCeroTest() {
-        assertEquals(1, Numeros.potencia(3, 0));
-    }
-
-    @Test
-    public void portenciaBaseCeroExponenteCeroTest() {
-        assertEquals(Double.NaN, Numeros.potencia(0, 0));
+    private static Stream<Arguments> potenciaTest() {
+        return Stream.of(
+                Arguments.of(2, 3, 8.0),
+                Arguments.of(-2, 3, -8.0),
+                Arguments.of(2, -3, 0.125),
+                Arguments.of(-2, -3, -0.125),
+                Arguments.of(0, 3, 0),
+                Arguments.of(3, 0, 1.0),
+                Arguments.of(0, 0, Double.NaN)
+        );
     }
 }
