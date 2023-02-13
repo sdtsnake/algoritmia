@@ -37,6 +37,7 @@ public class Numeros {
         if(exponente<0){
             resultado = 1 / resultado;
         }
+
         return resultado;
     }
     private static int absoluto(int exponte){

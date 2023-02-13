@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="clase1.NumerosTest" tests="23" skipped="0" failures="0" errors="0" timestamp="2023-02-13T01:51:14" hostname="SNAKE-ASUS" time="0.035">
+<testsuite name="clase1.NumerosTest" tests="23" skipped="0" failures="0" errors="0" timestamp="2023-02-13T01:55:30" hostname="SNAKE-ASUS" time="0.035">
   <properties/>
   <testcase name="portenciaBaseCeroExponenteCeroTest()" classname="clase1.NumerosTest" time="0.012"/>
   <testcase name="CeroEsParTest()" classname="clase1.NumerosTest" time="0.002"/>
-  <testcase name="noEsImpart()" classname="clase1.NumerosTest" time="0.001"/>
-  <testcase name="maxNumerosPositivosSegundoParametroMayorTest()" classname="clase1.NumerosTest" time="0.0"/>
+  <testcase name="noEsImpart()" classname="clase1.NumerosTest" time="0.002"/>
+  <testcase name="maxNumerosPositivosSegundoParametroMayorTest()" classname="clase1.NumerosTest" time="0.001"/>
   <testcase name="portenciaBaseCeroTest()" classname="clase1.NumerosTest" time="0.0"/>
-  <testcase name="maxNumerosNegativoTest()" classname="clase1.NumerosTest" time="0.0"/>
-  <testcase name="noEsParTest()" classname="clase1.NumerosTest" time="0.0"/>
-  <testcase name="minNumerosPositivosSegundoParametroMenorTest()" classname="clase1.NumerosTest" time="0.0"/>
-  <testcase name="potenciaExponenteNegativoTest()" classname="clase1.NumerosTest" time="0.0"/>
-  <testcase name="potenciaPositivosTest()" classname="clase1.NumerosTest" time="0.0"/>
-  <testcase name="minNumerosNegativoTest()" classname="clase1.NumerosTest" time="0.0"/>
-  <testcase name="portenciaExponenteCeroTest()" classname="clase1.NumerosTest" time="0.0"/>
-  <testcase name="maxNumerosIgualesTest()" classname="clase1.NumerosTest" time="0.0"/>
+  <testcase name="maxNumerosNegativoTest()" classname="clase1.NumerosTest" time="0.001"/>
+  <testcase name="noEsParTest()" classname="clase1.NumerosTest" time="0.001"/>
+  <testcase name="minNumerosPositivosSegundoParametroMenorTest()" classname="clase1.NumerosTest" time="0.001"/>
+  <testcase name="potenciaExponenteNegativoTest()" classname="clase1.NumerosTest" time="0.001"/>
+  <testcase name="potenciaPositivosTest()" classname="clase1.NumerosTest" time="0.001"/>
+  <testcase name="minNumerosNegativoTest()" classname="clase1.NumerosTest" time="0.001"/>
+  <testcase name="portenciaExponenteCeroTest()" classname="clase1.NumerosTest" time="0.001"/>
+  <testcase name="maxNumerosIgualesTest()" classname="clase1.NumerosTest" time="0.001"/>
   <testcase name="CeroNoEsImpart()" classname="clase1.NumerosTest" time="0.0"/>
   <testcase name="potenciaNumerosNegativosTest()" classname="clase1.NumerosTest" time="0.0"/>
   <testcase name="esImpart()" classname="clase1.NumerosTest" time="0.001"/>
-  <testcase name="minNumerosIgualesTest()" classname="clase1.NumerosTest" time="0.001"/>
-  <testcase name="esParTest()" classname="clase1.NumerosTest" time="0.001"/>
+  <testcase name="minNumerosIgualesTest()" classname="clase1.NumerosTest" time="0.0"/>
+  <testcase name="esParTest()" classname="clase1.NumerosTest" time="0.0"/>
   <testcase name="maxNumerosPositivosPrimerParametroMayorTest()" classname="clase1.NumerosTest" time="0.0"/>
   <testcase name="minCeroNegativoTest()" classname="clase1.NumerosTest" time="0.0"/>
   <testcase name="minNumerosPositivosPrimerParametroMenorTest()" classname="clase1.NumerosTest" time="0.0"/>
