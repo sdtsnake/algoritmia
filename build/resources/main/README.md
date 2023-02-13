@@ -1,3 +1,0 @@
-# algoritmia
-
-proyecto de algoritmia 
