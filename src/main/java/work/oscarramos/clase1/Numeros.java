@@ -1,4 +1,4 @@
-package clase1;
+package work.oscarramos.clase1;
 
 public class Numeros {
 
