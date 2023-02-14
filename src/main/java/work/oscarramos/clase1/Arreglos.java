@@ -2,6 +2,7 @@ package work.oscarramos.clase1;
 
 public class Arreglos {
     public static int sumarArreglo(int[] arreglo) {
+        if(arreglo==null) return 0;
         int resultado = 0;
         for (int i = 0; i < arreglo.length; i++) {
             resultado += arreglo[i];
@@ -10,6 +11,7 @@ public class Arreglos {
     }
 
     public static int[] multiplicarValoresArreglo(int[] arreglo, int multiplicador) {
+        if(arreglo==null) return arreglo;
         int[] resultado = new int[arreglo.length];
         for (int i = 0; i < arreglo.length; i++) {
             resultado[i] = arreglo[i] * multiplicador;
@@ -18,6 +20,8 @@ public class Arreglos {
     }
 
     public static int contarPares(int[] arreglo) {
+        if(arreglo==null) return 0;
+
         int resultado = 0;
         for (int elemento : arreglo) {
             if (Numeros.esPar(elemento)) {
@@ -28,6 +32,7 @@ public class Arreglos {
     }
 
     public static int contarImpares(int[] arreglo) {
+        if(arreglo==null) return 0;
         int contador = 0;
         for (int elemento : arreglo) {
             if (Numeros.esImpar(elemento)) {
@@ -38,6 +43,10 @@ public class Arreglos {
     }
 
     public static int[][] separarElementos(int numero, int[] arreglo) {
+        if(arreglo==null) {
+            int[][] resultado = null;
+            return resultado;
+        }
         int[] arregloMayores = new int[arreglo.length];
         int[] arregloMenores = new int[arreglo.length];
         int idxMenor = 0;
