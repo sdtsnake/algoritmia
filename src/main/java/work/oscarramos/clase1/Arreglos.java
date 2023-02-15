@@ -2,7 +2,7 @@ package work.oscarramos.clase1;
 
 public class Arreglos {
     public static int sumarArreglo(int[] arreglo) {
-        if(arreglo==null) return 0;
+        if (arreglo == null) return 0;
         int resultado = 0;
         for (int i = 0; i < arreglo.length; i++) {
             resultado += arreglo[i];
@@ -11,7 +11,7 @@ public class Arreglos {
     }
 
     public static int[] multiplicarValoresArreglo(int[] arreglo, int multiplicador) {
-        if(arreglo==null) return arreglo;
+        if (arreglo == null) return arreglo;
         int[] resultado = new int[arreglo.length];
         for (int i = 0; i < arreglo.length; i++) {
             resultado[i] = arreglo[i] * multiplicador;
@@ -20,7 +20,7 @@ public class Arreglos {
     }
 
     public static int contarPares(int[] arreglo) {
-        if(arreglo==null) return 0;
+        if (arreglo == null) return 0;
 
         int resultado = 0;
         for (int elemento : arreglo) {
@@ -32,7 +32,7 @@ public class Arreglos {
     }
 
     public static int contarImpares(int[] arreglo) {
-        if(arreglo==null) return 0;
+        if (arreglo == null) return 0;
         int contador = 0;
         for (int elemento : arreglo) {
             if (Numeros.esImpar(elemento)) {
@@ -43,7 +43,7 @@ public class Arreglos {
     }
 
     public static int[][] separarElementos(int numero, int[] arreglo) {
-        if(arreglo==null) {
+        if (arreglo == null) {
             return null;
         }
         int[] arregloMayores = new int[arreglo.length];
@@ -51,8 +51,11 @@ public class Arreglos {
         int idxMenor = 0;
         int idxMayor = 0;
         //
-        for (int elemento : arreglo){
-            int res = (Numeros.min(elemento, numero) < numero) ? (arregloMenores[idxMenor++] = elemento):(arregloMayores[idxMayor++] = elemento);
+        for (int elemento : arreglo) {
+            if (elemento >= numero)
+                arregloMayores[idxMayor++] = elemento;
+            else
+                arregloMenores[idxMenor++] = elemento;
         }
         int[][] resultado = new int[2][];
         resultado[0] = new int[idxMenor];
