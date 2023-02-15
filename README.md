@@ -39,24 +39,25 @@ Ambos son bloques de codigo que realizan una tarea especifica y ayuda a mejorar 
 
 <p> Ejercicios: <br>
 
-Crear una clase Numero que tengan los siguiente metodos estaticos.
+Crear una clase Número que tengan los siguientes metodos estaticos.
 
 - Implementar funcion minimo
 - Implementar funcion par (boolean)
 - Implementar funcion impar (boolean)
 - Implementar funcion exponente base y exponente
 
-Crear una clase arreglos que tenga los siguiente metodos estaticos.
+Crear una clase arreglos que tenga los siguientes metodos estaticos.
 
 - Implementar una funcion que sume los valores de un arreglo
 - Implementar una funcion que multiplique los valores de un arreglo por otro valor
 - Implementar funcion que retorne cuantos pares hay asumiendo que el cero es par
 - Implementar funcion que retorne cuantos impares hay asumiendo que el cero es par
-- Implementar funcion que partiendo un numero N y un arrelo "A" me de como resultado 2 arreglos "B" y "C" donde "B" esta compuesto por los numero de "A" que sean menores que N y "C" esta compuesto por los numeros de "A" que sean mayores o iguales a N respues es un arreglo de arreglos
-     
-<p>Nota : </p> Ambos ejercicios deben contar con pruebas unitarias y aplicando TDD 
+- Implementar funcion que partiendo un número N y un arrelo "A" me dé como resultado 2 arreglos "B" y "C" donde "B" esta compuesto por los numero de "A" que sean menores que N y "C" esta compuesto por los numeros de "A" que sean mayores o iguales a N respues es un arreglo de arreglos
+
+<p>Nota : </p> Ambos ejercicios deben contar con pruebas unitarias y aplicando TDD. 
 
 Tips : <br>
 
 1. pensar en los casos extremos
 2. Pensar en casos representavivos teniendo en cuenta que son excluyentes
+
