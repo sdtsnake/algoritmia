@@ -49,10 +49,8 @@ public class Arreglos {
         if (arreglo == null) {
             return null;
         }
-        Predicate<Integer> menorQue = x -> x < numero;
-        Predicate<Integer> mayorIgualQue = x -> x >= numero;
-        int[] arregloMayores = seleccion(arreglo, mayorIgualQue);
-        int[] arregloMenores = seleccion(arreglo, menorQue);
+        int[] arregloMenores = menorQue(arreglo, numero);
+        int[] arregloMayores = mayorIgualQue(arreglo, numero);
 
         int[][] resultado = new int[2][];
 
@@ -61,20 +59,30 @@ public class Arreglos {
         return resultado;
     }
 
-    private static int[] seleccion(int[] arreghlo, Predicate seleccion) {
+    private static int[] menorQue(int[] arreghlo, int numero) {
         int[] respuesta = new int[arreghlo.length];
         int idx = -1;
         for (int elemento : arreghlo) {
-            if (seleccion.test(elemento)) {
+            if (elemento < numero) {
                 idx++;
                 respuesta[idx] = elemento;
             }
         }
-
-        if(idx<0) return new int[0];
-
+        if (idx < 0) return new int[0];
         return Arrays.copyOfRange(respuesta, 0, idx + 1);
+    }
 
+    private static int[] mayorIgualQue(int[] arreghlo, int numero) {
+        int[] respuesta = new int[arreghlo.length];
+        int idx = -1;
+        for (int elemento : arreghlo) {
+            if (elemento >= numero) {
+                idx++;
+                respuesta[idx] = elemento;
+            }
+        }
+        if (idx < 0) return new int[0];
+        return Arrays.copyOfRange(respuesta, 0, idx + 1);
     }
 
 }
