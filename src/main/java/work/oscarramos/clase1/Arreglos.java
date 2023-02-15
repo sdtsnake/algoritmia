@@ -44,33 +44,21 @@ public class Arreglos {
 
     public static int[][] separarElementos(int numero, int[] arreglo) {
         if(arreglo==null) {
-            int[][] resultado = null;
-            return resultado;
+            return null;
         }
         int[] arregloMayores = new int[arreglo.length];
         int[] arregloMenores = new int[arreglo.length];
         int idxMenor = 0;
         int idxMayor = 0;
-        for (int elemento : arreglo) {
-            if(Numeros.min(elemento, numero) < numero){
-                arregloMenores[idxMenor++] = elemento;
-            }else{
-                arregloMayores[idxMayor++] = elemento;
-            }
-
-
+        //
+        for (int elemento : arreglo){
+            int res = (Numeros.min(elemento, numero) < numero) ? (arregloMenores[idxMenor++] = elemento):(arregloMayores[idxMayor++] = elemento);
         }
         int[][] resultado = new int[2][];
         resultado[0] = new int[idxMenor];
         resultado[1] = new int[idxMayor];
-        for (int i = 0; i < idxMenor; i++) {
-            resultado[0][i] = arregloMenores[i];
-        }
-        for (int i = 0; i < idxMayor; i++) {
-            resultado[1][i] = arregloMayores[i];
-        }
+        System.arraycopy(arregloMenores, 0, resultado[0], 0, idxMenor);
+        System.arraycopy(arregloMayores, 0, resultado[1], 0, idxMayor);
         return resultado;
     }
-
-
 }
