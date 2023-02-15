@@ -1,5 +1,8 @@
 package work.oscarramos.clase1;
 
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 public class Arreglos {
     public static int sumarArreglo(int[] arreglo) {
         if (arreglo == null) return 0;
@@ -46,22 +49,32 @@ public class Arreglos {
         if (arreglo == null) {
             return null;
         }
-        int[] arregloMayores = new int[arreglo.length];
-        int[] arregloMenores = new int[arreglo.length];
-        int idxMenor = 0;
-        int idxMayor = 0;
-        //
-        for (int elemento : arreglo) {
-            if (elemento >= numero)
-                arregloMayores[idxMayor++] = elemento;
-            else
-                arregloMenores[idxMenor++] = elemento;
-        }
+        Predicate<Integer> menorQue = x -> x < numero;
+        Predicate<Integer> mayorIgualQue = x -> x >= numero;
+        int[] arregloMayores = seleccion(arreglo, mayorIgualQue);
+        int[] arregloMenores = seleccion(arreglo, menorQue);
+
         int[][] resultado = new int[2][];
-        resultado[0] = new int[idxMenor];
-        resultado[1] = new int[idxMayor];
-        System.arraycopy(arregloMenores, 0, resultado[0], 0, idxMenor);
-        System.arraycopy(arregloMayores, 0, resultado[1], 0, idxMayor);
+
+        resultado[0] = arregloMenores;
+        resultado[1] = arregloMayores;
         return resultado;
     }
+
+    private static int[] seleccion(int[] arreghlo, Predicate seleccion) {
+        int[] respuesta = new int[arreghlo.length];
+        int idx = -1;
+        for (int elemento : arreghlo) {
+            if (seleccion.test(elemento)) {
+                idx++;
+                respuesta[idx] = elemento;
+            }
+        }
+
+        if(idx<0) return new int[0];
+
+        return Arrays.copyOfRange(respuesta, 0, idx + 1);
+
+    }
+
 }
