@@ -49,8 +49,8 @@ public class Arreglos {
         if (arreglo == null) {
             return null;
         }
-        int[] arregloMenores = menorQue(arreglo, numero);
-        int[] arregloMayores = mayorIgualQue(arreglo, numero);
+        int[] arregloMenores = menorMayorIgualQue(arreglo, numero, true);
+        int[] arregloMayores = menorMayorIgualQue(arreglo, numero, false);
 
         int[][] resultado = new int[2][];
 
@@ -59,30 +59,21 @@ public class Arreglos {
         return resultado;
     }
 
-    private static int[] menorQue(int[] arreghlo, int numero) {
+    private static int[] menorMayorIgualQue(int[] arreghlo, int numero, boolean menor) {
         int[] respuesta = new int[arreghlo.length];
         int idx = -1;
         for (int elemento : arreghlo) {
-            if (elemento < numero) {
+            if (menor && elemento < numero || !menor && elemento >= numero) {
                 idx++;
                 respuesta[idx] = elemento;
             }
         }
         if (idx < 0) return new int[0];
+
+        //TODO no usar la libreria hacerlo a mano.
         return Arrays.copyOfRange(respuesta, 0, idx + 1);
+
     }
 
-    private static int[] mayorIgualQue(int[] arreghlo, int numero) {
-        int[] respuesta = new int[arreghlo.length];
-        int idx = -1;
-        for (int elemento : arreghlo) {
-            if (elemento >= numero) {
-                idx++;
-                respuesta[idx] = elemento;
-            }
-        }
-        if (idx < 0) return new int[0];
-        return Arrays.copyOfRange(respuesta, 0, idx + 1);
-    }
 
 }
