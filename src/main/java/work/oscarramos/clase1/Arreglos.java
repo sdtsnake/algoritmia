@@ -59,21 +59,48 @@ public class Arreglos {
         return resultado;
     }
 
-    private static int[] menorMayorIgualQue(int[] arreghlo, int numero, boolean menor) {
-        int[] respuesta = new int[arreghlo.length];
+    private static int[] menorMayorIgualQue(int[] arreglo, int numero, boolean menor) {
+        int[] resultado = new int[arreglo.length];
         int idx = -1;
-        for (int elemento : arreghlo) {
+        for (int elemento : arreglo) {
             if (menor && elemento < numero || !menor && elemento >= numero) {
                 idx++;
-                respuesta[idx] = elemento;
+                resultado[idx] = elemento;
             }
         }
         if (idx < 0) return new int[0];
 
         //TODO no usar la libreria hacerlo a mano.
-        return Arrays.copyOfRange(respuesta, 0, idx + 1);
+        //return Arrays.copyOfRange(respuesta, 0, idx + 1);
 
+        int tamArray = idx + 1;
+        if(arreglo.length == (idx+1)){
+            tamArray = arreglo.length;
+        }
+
+        int[] respuesta = new int[tamArray];
+
+        for(int i = 0;i<respuesta.length;i++){
+            respuesta[i] = resultado[i];
+        }
+        return respuesta;
     }
+
+
+
+    /*
+        y = mx + b
+        y = 2x + 2 ,y x : 2 0
+
+        Conjuntos -> arreglos byte -128 a 127
+        - algoritmo de decision para saber si es un conjunto
+        - algoritmo que convierta un arrelo de bytes sea uyn conjunto
+
+
+
+
+     */
+
 
 
 }
