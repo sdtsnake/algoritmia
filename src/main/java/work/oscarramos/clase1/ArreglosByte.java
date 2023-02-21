@@ -53,7 +53,7 @@ public class ArreglosByte {
 
     public static byte[] convertirEnConjunto(byte[] arr) {
         if (arr == null) return null;
-        if (arr.length == 0 || esConjuntoV1(arr)) return arr;
+        if (arr.length == 0) return arr;
         byte[] conjunto = new byte[arr.length];
         byte[] transito = new byte[arr.length];
 
