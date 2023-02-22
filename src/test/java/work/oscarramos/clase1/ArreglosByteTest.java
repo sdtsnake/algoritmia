@@ -78,4 +78,30 @@ class ArreglosByteTest {
         };
     }
 
+    @ParameterizedTest
+    @MethodSource
+    public void conjuntosIgualesTrueTest(byte[] arr1,byte[] arr2) {
+        assertEquals(true, ArreglosByte.comparaArreglos(arr1,arr2));
+    }
+    private static Object[][] conjuntosIgualesTrueTest() {
+        return new Object[][]{
+                {new byte[]{1, 2, 4, 5},new byte[]{1, 2, 4, 5}},
+                {new byte[]{2},new byte[]{2}},
+                {new byte[]{},new byte[]{}},
+        };
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    public void conjuntosIgualesFalseTest(byte[] arr1,byte[] arr2) {
+        assertEquals(false, ArreglosByte.comparaArreglos(arr1,arr2));
+    }
+    private static Object[][] conjuntosIgualesFalseTest() {
+        return new Object[][]{
+                {new byte[]{1, 2, 4, 5},new byte[]{1, 2, 4, 5,6}},
+                {new byte[]{1, 2, 4, 5, 5},new byte[]{1, 2, 4, 5,6}},
+                {new byte[]{},new byte[]{2}},
+                {null,null}
+        };
+    }
 }

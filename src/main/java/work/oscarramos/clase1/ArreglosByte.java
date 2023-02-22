@@ -31,9 +31,10 @@ public class ArreglosByte {
             //System.out.println("%s, %s".formatted(l, (fin-ini)));
         }
 
+
+
         /*
-            - Realizar un algoritmo que diaga si dos arreglos son iguales.
-            - Realizar un algoritmo que me diga si dos conjuntos son iguales.
+           - Realizar un algoritmo que me diga si dos conjuntos son iguales.
          */
 
             /*
@@ -43,10 +44,6 @@ public class ArreglosByte {
         Conjuntos -> arreglos byte -128 a 127
         - algoritmo de decision para saber si es un conjunto
         - algoritmo que convierta un arrelo de bytes sea uyn conjunto
-
-
-
-
      */
 
     }
@@ -91,4 +88,44 @@ public class ArreglosByte {
         }
         return true;
     }
+
+    public static boolean conjuntosIguales(byte[] arreglo1, byte[] arreglo2) {
+        // Verificar si los arreglos tienen la misma longitud
+        if (arreglo1.length != arreglo2.length) {
+            return false;
+        }
+        if(!esConjuntoV1(arreglo1)){
+            return false;
+        }
+        if(!esConjuntoV1(arreglo2)){
+            return false;
+        }
+        // Ordenar ambos arreglos
+        ordenar(arreglo1);
+        ordenar(arreglo2);
+
+        // Comparar elemento por elemento
+        for (int i = 0; i < arreglo1.length; i++) {
+            if (arreglo1[i] != arreglo2[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void ordenar(byte[] arreglo) {
+        for (int i = 0; i < arreglo.length; i++) {
+            for (int j = i + 1; j < arreglo.length; j++) {
+                if (arreglo[j] < arreglo[i]) {
+                    // Intercambiar elementos
+                    byte temp = arreglo[i];
+                    arreglo[i] = arreglo[j];
+                    arreglo[j] = temp;
+                }
+            }
+        }
+    }
+
+
 }
