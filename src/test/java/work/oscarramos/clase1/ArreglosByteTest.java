@@ -46,6 +46,7 @@ class ArreglosByteTest {
                 {new byte[]{},new byte[]{}},
                 {null,null},
                 {new byte[]{1, 2, 3, 3, 4, 5},new byte[]{1, 2, 3, 4, 5}},
+                {new byte[]{1, 1, 1, 1, 1, 1},new byte[]{1}},
                 {new byte[]{1, 2, 3, 3, 4, 5, 5, 6, 7, 8},new byte[]{1, 2, 3, 4, 5, 6, 7, 8}},
                 {new byte[]{1},new byte[]{1}},
                 {new byte[]{1,2,3,1,2,3,4,5,1,2,3},new byte[]{1,2,3,4,5}}
@@ -59,6 +60,7 @@ class ArreglosByteTest {
     private static Object[][] comparaArreglosTrueTest() {
         return new Object[][]{
                 {new byte[]{},new byte[]{}},
+                {null,null},
                 {new byte[]{1, 2, 3, 3, 4, 5},new byte[]{1, 2, 3, 3, 4, 5}},
                 {new byte[]{1, 2, 3, 3, 4, 5, 5, 6, 7, 8},new byte[]{1, 2, 3, 3, 4, 5, 5, 6, 7, 8}},
                 {new byte[]{1},new byte[]{1}},
@@ -72,7 +74,6 @@ class ArreglosByteTest {
     }
     private static Object[][] comparaArreglosFalseTest() {
         return new Object[][]{
-                {null,null},
                 {new byte[]{1, 2, 4, 5},new byte[]{1, 2, 3, 3, 4, 5}},
                 {new byte[]{1, 2, 3, 4},new byte[]{4, 3, 2, 1}},
         };

@@ -52,18 +52,15 @@ public class ArreglosByte {
         if (arr == null) return null;
         if (arr.length == 0) return arr;
         byte[] conjunto = new byte[arr.length];
-        byte[] transito = new byte[arr.length];
 
         int idx = 0;
         for (int i = 0; i < arr.length; i++) {
-            transito[i] = arr[i];
             for (int j = 0; j < arr.length; j++) {
-                if(arr[i]==transito[j]){
-                    if(i==j){
-                        conjunto[idx] = arr[j];
+                if (arr[i] == arr[j]) {
+                    if (i == j) {
+                        conjunto[idx] = arr[i];
                         idx++;
-                    }
-                    else{
+                    } else {
                         break;
                     }
                 }
@@ -77,8 +74,8 @@ public class ArreglosByte {
     }
 
     public static boolean comparaArreglos(byte[] arr1, byte[] arr2) {
-        if (arr1 == null && arr2 == null) return false;
-        if (arr1.length == 0 && arr2.length ==0) return true;
+        if (arr1 == null && arr2 == null) return true;
+        if (arr1.length == 0 && arr2.length == 0) return true;
         if (arr1.length != arr2.length) return false;
 
         for (int i = 0; i < arr1.length; i++) {
@@ -94,10 +91,10 @@ public class ArreglosByte {
         if (arreglo1.length != arreglo2.length) {
             return false;
         }
-        if(!esConjuntoV1(arreglo1)){
+        if (!esConjuntoV1(arreglo1)) {
             return false;
         }
-        if(!esConjuntoV1(arreglo2)){
+        if (!esConjuntoV1(arreglo2)) {
             return false;
         }
         // Ordenar ambos arreglos
