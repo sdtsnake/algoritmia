@@ -30,23 +30,19 @@ public class ArreglosByte {
             System.out.println("n=%s r=%s t=%s".formatted(l, resultado, (fin - ini)));
             //System.out.println("%s, %s".formatted(l, (fin-ini)));
         }
-
-
-
         /*
-           - Realizar un algoritmo que me diga si dos conjuntos son iguales.
-         */
+            y = mx + b
+            y = 2x + 2 ,y x : 2 0
 
-            /*
-        y = mx + b
-        y = 2x + 2 ,y x : 2 0
-
-        Conjuntos -> arreglos byte -128 a 127
-        - algoritmo de decision para saber si es un conjunto
-        - algoritmo que convierta un arrelo de bytes sea uyn conjunto
-     */
+            Conjuntos -> arreglos byte -128 a 127
+            - algoritmo de decision para saber si es un conjunto
+            - algoritmo que convierta un arrelo de bytes sea uyn conjunto
+        */
 
     }
+    /*
+        Un arreglo se convierte en conjunto elminando los elemento repetidos.
+     */
 
     public static byte[] convertirEnConjunto(byte[] arr) {
         if (arr == null) return null;
@@ -72,6 +68,9 @@ public class ArreglosByte {
         }
         return resultado;
     }
+    /*
+        Dos arreglos son iguales cuando tienen sus elementos consecutivos en su mismo orden
+     */
 
     public static boolean comparaArreglos(byte[] arr1, byte[] arr2) {
         if (arr1 == null && arr2 == null) return true;
@@ -85,44 +84,51 @@ public class ArreglosByte {
         }
         return true;
     }
+    /*
+        Dos conjuntos son iguales cuando los elementos del conjunto A están en el conjunto B
+        y los elementos del conjunto B están A
+     */
 
     public static boolean conjuntosIguales(byte[] arreglo1, byte[] arreglo2) {
-        // Verificar si los arreglos tienen la misma longitud
-        if (arreglo1.length != arreglo2.length) {
-            return false;
-        }
-        if (!esConjuntoV1(arreglo1)) {
-            return false;
-        }
-        if (!esConjuntoV1(arreglo2)) {
-            return false;
-        }
-        // Ordenar ambos arreglos
-        ordenar(arreglo1);
-        ordenar(arreglo2);
+        if(arreglo1 == null && arreglo2 == null) return false;
+        if(arreglo1.length == 0 && arreglo2.length == 0) return true;
 
-        // Comparar elemento por elemento
+
+        boolean existeElmentoConjuntos1 = false;
         for (int i = 0; i < arreglo1.length; i++) {
-            if (arreglo1[i] != arreglo2[i]) {
+            for (int j = 0; j <arreglo2.length ; j++) {
+                if(arreglo1[i]==arreglo2[j]){
+                    existeElmentoConjuntos1 = true;
+                    break;
+                }else{
+                    existeElmentoConjuntos1 = false;
+                }
+            }
+            if(!existeElmentoConjuntos1){
                 return false;
             }
         }
 
+        boolean existeElmentoConjunto2 = false;
+        for (int i = 0; i < arreglo2.length; i++) {
+            for (int j = 0; j <arreglo1.length ; j++) {
+                if(arreglo2[i]==arreglo1[j]){
+                    existeElmentoConjunto2 = true;
+                    break;
+                }else{
+                    existeElmentoConjunto2 = false;
+                }
+            }
+            if(!existeElmentoConjunto2){
+                return false;
+            }
+        }
+
+        if(!existeElmentoConjuntos1 || !existeElmentoConjunto2) return false;
+
         return true;
     }
 
-    public static void ordenar(byte[] arreglo) {
-        for (int i = 0; i < arreglo.length; i++) {
-            for (int j = i + 1; j < arreglo.length; j++) {
-                if (arreglo[j] < arreglo[i]) {
-                    // Intercambiar elementos
-                    byte temp = arreglo[i];
-                    arreglo[i] = arreglo[j];
-                    arreglo[j] = temp;
-                }
-            }
-        }
-    }
 
 
 }

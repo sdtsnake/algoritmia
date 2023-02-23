@@ -38,71 +38,82 @@ class ArreglosByteTest {
 
     @ParameterizedTest
     @MethodSource
-    public void convertirEnConjuntoTest(byte[] arr,byte[] respuesta) {
+    public void convertirEnConjuntoTest(byte[] arr, byte[] respuesta) {
         assertArrayEquals(respuesta, ArreglosByte.convertirEnConjunto(arr));
     }
+
     private static Object[][] convertirEnConjuntoTest() {
         return new Object[][]{
-                {new byte[]{},new byte[]{}},
-                {null,null},
-                {new byte[]{1, 2, 3, 3, 4, 5},new byte[]{1, 2, 3, 4, 5}},
-                {new byte[]{1, 1, 1, 1, 1, 1},new byte[]{1}},
-                {new byte[]{1, 2, 3, 3, 4, 5, 5, 6, 7, 8},new byte[]{1, 2, 3, 4, 5, 6, 7, 8}},
-                {new byte[]{1},new byte[]{1}},
-                {new byte[]{1,2,3,1,2,3,4,5,1,2,3},new byte[]{1,2,3,4,5}}
+                {new byte[]{}, new byte[]{}},
+                {null, null},
+                {new byte[]{1, 2, 3, 3, 4, 5}, new byte[]{1, 2, 3, 4, 5}},
+                {new byte[]{1, 1, 1, 1, 1, 1}, new byte[]{1}},
+                {new byte[]{1, 2, 3, 3, 4, 5, 5, 6, 7, 8}, new byte[]{1, 2, 3, 4, 5, 6, 7, 8}},
+                {new byte[]{1}, new byte[]{1}},
+                {new byte[]{1, 2, 3, 1, 2, 3, 4, 5, 1, 2, 3}, new byte[]{1, 2, 3, 4, 5}}
         };
     }
+
     @ParameterizedTest
     @MethodSource
-    public void comparaArreglosTrueTest(byte[] arr1,byte[] arr2) {
-        assertEquals(true, ArreglosByte.comparaArreglos(arr1,arr2));
+    public void comparaArreglosTrueTest(byte[] arr1, byte[] arr2) {
+        assertEquals(true, ArreglosByte.comparaArreglos(arr1, arr2));
     }
+
     private static Object[][] comparaArreglosTrueTest() {
         return new Object[][]{
-                {new byte[]{},new byte[]{}},
-                {null,null},
-                {new byte[]{1, 2, 3, 3, 4, 5},new byte[]{1, 2, 3, 3, 4, 5}},
-                {new byte[]{1, 2, 3, 3, 4, 5, 5, 6, 7, 8},new byte[]{1, 2, 3, 3, 4, 5, 5, 6, 7, 8}},
-                {new byte[]{1},new byte[]{1}},
-                {new byte[]{1,2,3,1,2,3,4,5,1,2,3},new byte[]{1,2,3,1,2,3,4,5,1,2,3}}
+                {new byte[]{}, new byte[]{}},
+                {null, null},
+                {new byte[]{1, 2, 3, 3, 4, 5}, new byte[]{1, 2, 3, 3, 4, 5}},
+                {new byte[]{1, 2, 3, 3, 4, 5, 5, 6, 7, 8}, new byte[]{1, 2, 3, 3, 4, 5, 5, 6, 7, 8}},
+                {new byte[]{1}, new byte[]{1}},
+                {new byte[]{1, 2, 3, 1, 2, 3, 4, 5, 1, 2, 3}, new byte[]{1, 2, 3, 1, 2, 3, 4, 5, 1, 2, 3}}
         };
     }
+
     @ParameterizedTest
     @MethodSource
-    public void comparaArreglosFalseTest(byte[] arr1,byte[] arr2) {
-        assertEquals(false, ArreglosByte.comparaArreglos(arr1,arr2));
+    public void comparaArreglosFalseTest(byte[] arr1, byte[] arr2) {
+        assertEquals(false, ArreglosByte.comparaArreglos(arr1, arr2));
     }
+
     private static Object[][] comparaArreglosFalseTest() {
         return new Object[][]{
-                {new byte[]{1, 2, 4, 5},new byte[]{1, 2, 3, 3, 4, 5}},
-                {new byte[]{1, 2, 3, 4},new byte[]{4, 3, 2, 1}},
+                {new byte[]{1, 2, 4, 5}, new byte[]{1, 2, 3, 3, 4, 5}},
+                {new byte[]{1, 2, 3, 4}, new byte[]{4, 3, 2, 1}},
         };
     }
 
     @ParameterizedTest
     @MethodSource
-    public void conjuntosIgualesTrueTest(byte[] arr1,byte[] arr2) {
-        assertEquals(true, ArreglosByte.comparaArreglos(arr1,arr2));
+    public void conjuntosIgualesTrueTest(byte[] arr1, byte[] arr2) {
+        assertEquals(true, ArreglosByte.conjuntosIguales(arr1, arr2));
     }
+
     private static Object[][] conjuntosIgualesTrueTest() {
         return new Object[][]{
-                {new byte[]{1, 2, 4, 5},new byte[]{1, 2, 4, 5}},
-                {new byte[]{2},new byte[]{2}},
-                {new byte[]{},new byte[]{}},
+                {new byte[]{1, 2, 4, 5}, new byte[]{1, 2, 4, 5}},
+                {new byte[]{5, 4, 2, 1}, new byte[]{1, 2, 4, 5}},
+                {new byte[]{1, 2, 4, 5, 5, 5}, new byte[]{1, 2, 4, 5}},
+                {new byte[] {1, 2, 4, 5}, new byte[]{1, 2, 4, 5, 5, 5}},
+                {new byte[]{1, 2, 3, 4, 5, 5, 5}, new byte[]{1, 2, 3, 4, 5}},
+                {new byte[]{2}, new byte[]{2}},
+                {new byte[]{}, new byte[]{}},
         };
     }
 
     @ParameterizedTest
     @MethodSource
-    public void conjuntosIgualesFalseTest(byte[] arr1,byte[] arr2) {
-        assertEquals(false, ArreglosByte.comparaArreglos(arr1,arr2));
+    public void conjuntosIgualesFalseTest(byte[] arr1, byte[] arr2) {
+        assertEquals(false, ArreglosByte.conjuntosIguales(arr1, arr2));
     }
+
     private static Object[][] conjuntosIgualesFalseTest() {
         return new Object[][]{
-                {new byte[]{1, 2, 4, 5},new byte[]{1, 2, 4, 5,6}},
-                {new byte[]{1, 2, 4, 5, 5},new byte[]{1, 2, 4, 5,6}},
-                {new byte[]{},new byte[]{2}},
-                {null,null}
+                {null, null},
+                {new byte[]{1, 2, 4, 5}, new byte[]{1, 2, 4, 5, 6}},
+                {new byte[]{1, 2, 4, 5, 5}, new byte[]{1, 2, 4, 5, 6}},
+                {new byte[]{}, new byte[]{2}}
         };
     }
 }
