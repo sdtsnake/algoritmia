@@ -90,45 +90,38 @@ public class ArreglosByte {
      */
 
     public static boolean conjuntosIguales(byte[] arreglo1, byte[] arreglo2) {
-        if(arreglo1 == null && arreglo2 == null) return false;
-        if(arreglo1.length == 0 && arreglo2.length == 0) return true;
+        if (arreglo1 == null && arreglo2 == null) return false;
+        if (arreglo1.length == 0 && arreglo2.length == 0) return true;
 
-
-        boolean existeElmentoConjuntos1 = false;
         for (int i = 0; i < arreglo1.length; i++) {
-            for (int j = 0; j <arreglo2.length ; j++) {
-                if(arreglo1[i]==arreglo2[j]){
+            boolean existeElmentoConjuntos1 = false;
+            for (int j = 0; j < arreglo2.length; j++) {
+                if (arreglo1[i] == arreglo2[j]) {
                     existeElmentoConjuntos1 = true;
                     break;
-                }else{
+                } else {
                     existeElmentoConjuntos1 = false;
                 }
             }
-            if(!existeElmentoConjuntos1){
+            if (!existeElmentoConjuntos1) {
                 return false;
             }
         }
 
-        boolean existeElmentoConjunto2 = false;
         for (int i = 0; i < arreglo2.length; i++) {
-            for (int j = 0; j <arreglo1.length ; j++) {
-                if(arreglo2[i]==arreglo1[j]){
+            boolean existeElmentoConjunto2 = false;
+            for (int j = 0; j < arreglo1.length; j++) {
+                if (arreglo2[i] == arreglo1[j]) {
                     existeElmentoConjunto2 = true;
                     break;
-                }else{
+                } else {
                     existeElmentoConjunto2 = false;
                 }
             }
-            if(!existeElmentoConjunto2){
+            if (!existeElmentoConjunto2) {
                 return false;
             }
         }
-
-        if(!existeElmentoConjuntos1 || !existeElmentoConjunto2) return false;
-
         return true;
     }
-
-
-
 }
