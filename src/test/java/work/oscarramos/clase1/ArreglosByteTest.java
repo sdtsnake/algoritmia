@@ -144,6 +144,49 @@ class ArreglosByteTest {
                 {new Byte((byte) 2), new byte[]{}}
         };
     }
+    @ParameterizedTest
+    @MethodSource
+    public void conjuntoDentroDeOtroTrueTest(byte[] arr1, byte[] arr2) {
+        assertTrue(ArreglosByte.conjuntoDentroDeOtro(arr1,arr2));
+    }
+
+    private static Object[][] conjuntoDentroDeOtroTrueTest() {
+        return new Object[][]{
+                {new byte[]{1, 2, 4, 5}, new byte[]{0, 1, 2, 4, 5, 6, 7}},
+                {new byte[]{ 4, 5, 6, 7, 8, 9, 10}, new byte[]{6, 7, 8, 9}},
+                {new byte[]{ 4, 5, 6, 7, 8, 9, 10}, new byte[]{9, 8, 6, 4}},
+                {new byte[]{-1, -2, 3, 4}, new byte[]{0, -1, -2, 3, 4, 5, 6}},
+                {new byte[]{}, new byte[]{}}
+        };
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    public void conjuntoDentroDeOtroFalseTest(byte[] arr1, byte[] arr2) {
+        assertFalse(ArreglosByte.conjuntoDentroDeOtro(arr1,arr2));
+    }
+
+    private static Object[][] conjuntoDentroDeOtroFalseTest() {
+        return new Object[][]{
+                {new byte[]{6, 7, 8, 9}, new byte[]{0, 1, 2, 4, 5, 6, 7}},
+                {new byte[]{ 4, 5, 6, 7, 8, 9, 10}, new byte[]{16, 17, 18, 19}},
+                {new byte[]{ 3, -5, -6, -7, 8, 9, 10}, new byte[]{9, 8, 6, 4}},
+                {new byte[]{-1, -2, 3, 9}, new byte[]{0, -1, -2, 3, 4, 5, 6}},
+                {null, null}
+        };
+    }
+
+    /*
+        funcion para saber si un conjunto esta dentro de otro de otro
+        funcion que determiene si dos conjuntos se interseptan.
+
+        funcion que retorne la interseccion de 2 conjuntos
+        funcion que retorne la union de dos conjuntos
+        funcion que retorne la diferencia de dos conjuntos.
+
+
+
+     */
 
 
 }

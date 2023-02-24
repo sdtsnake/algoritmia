@@ -134,4 +134,36 @@ public class ArreglosByte {
 
         return false;
     }
+
+    public static boolean conjuntoDentroDeOtro(byte[] arreglo1, byte[] arreglo2) {
+        if (arreglo1==null && arreglo2 == null) return false;
+        if (arreglo1.length == 0 && arreglo2.length == 0) return true;
+
+
+
+        if(arreglo1.length>arreglo2.length){
+            if (!verificaContenido(arreglo2, arreglo1)) return false;
+        }else{
+            if (!verificaContenido(arreglo1, arreglo2)) return false;
+        }
+
+        return true;
+    }
+    private static boolean verificaContenido(byte[] arrMenor, byte[] arrMayor) {
+        boolean elementoContenido = false;
+        for (int i = 0; i < arrMenor.length; i++) {
+            for (int j = 0; j < arrMayor.length; j++) {
+                if (arrMenor[i] == arrMayor[j]) {
+                    elementoContenido = true;
+                    break;
+                }
+            }
+            if(elementoContenido) {
+                elementoContenido = false;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
 }

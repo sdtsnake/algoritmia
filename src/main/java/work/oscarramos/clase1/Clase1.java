@@ -72,7 +72,7 @@ public class Clase1 {
             - |int|=4.294.970.296
             - 2^32 -> permutaciones
 
-        - que es una permutacion y una convinacion.
+        - que es una permutacion y una convinacion con ejemplos.
 
 
 
