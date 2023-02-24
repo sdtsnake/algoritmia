@@ -5,6 +5,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ArreglosByteTest {
@@ -95,7 +96,7 @@ class ArreglosByteTest {
                 {new byte[]{1, 2, 4, 5}, new byte[]{1, 2, 4, 5}},
                 {new byte[]{5, 4, 2, 1}, new byte[]{1, 2, 4, 5}},
                 {new byte[]{1, 2, 4, 5, 5, 5}, new byte[]{1, 2, 4, 5}},
-                {new byte[] {1, 2, 4, 5}, new byte[]{1, 2, 4, 5, 5, 5}},
+                {new byte[]{1, 2, 4, 5}, new byte[]{1, 2, 4, 5, 5, 5}},
                 {new byte[]{1, 2, 3, 4, 5, 5, 5}, new byte[]{1, 2, 3, 4, 5}},
                 {new byte[]{2}, new byte[]{2}},
                 {new byte[]{}, new byte[]{}},
@@ -116,4 +117,33 @@ class ArreglosByteTest {
                 {new byte[]{}, new byte[]{2}}
         };
     }
+
+    @ParameterizedTest
+    @MethodSource
+    public void elementoEnConjuntoTrueTest(byte numero, byte[] arr1) {
+        assertTrue(ArreglosByte.elementoEnConjunto(numero, arr1));
+    }
+
+    private static Object[][] elementoEnConjuntoTrueTest() {
+        return new Object[][]{
+                {new Byte((byte) 5), new byte[]{1, 2, 4, 5}},
+                {new Byte((byte) 0), new byte[]{1, 2, 4, 5, 0}}
+        };
+    }
+    @ParameterizedTest
+    @MethodSource
+    public void elementoEnConjuntoFalseTest(byte numero, byte[] arr1) {
+        assertFalse(ArreglosByte.elementoEnConjunto(numero, arr1));
+    }
+
+    private static Object[][] elementoEnConjuntoFalseTest() {
+        return new Object[][]{
+                {new Byte((byte) 6), new byte[]{1, 2, 4, 5}},
+                {new Byte((byte) 6), null},
+                {new Byte((byte) 9), new byte[]{1, 2, 4, 5, 0}},
+                {new Byte((byte) 2), new byte[]{}}
+        };
+    }
+
+
 }

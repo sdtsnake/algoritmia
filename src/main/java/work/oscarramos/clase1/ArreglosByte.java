@@ -124,4 +124,14 @@ public class ArreglosByte {
         }
         return true;
     }
+
+    public static boolean elementoEnConjunto(byte numero, byte[] arr1) {
+        if(arr1==null) return false;
+
+        for (int i = 0; i < arr1.length; i++) {
+            if(arr1[i]==numero) return true;
+        }
+
+        return false;
+    }
 }

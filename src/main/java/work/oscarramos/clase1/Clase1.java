@@ -55,5 +55,28 @@ public class Clase1 {
          */
    // }
 
+    /*
+
+        Contar elementos de un conjunto
+        - cardinalidad de los booleanos cardinalidas 2 verdadero o false
+            - booleanos por enumeracion : son verdadero o falso
+            - {true,false}
+            - por descripcion los booleanos son los elementos que tienen 2 posibles valores
+        - Descriptiva ->lo elemento en el conjuento enteros son los numeros naturales comprendidos ente -2.147,483.648 y 2.147.483.647
+            - x >= -2.147.483.648 y x <= 2.147.483.647
+            - int={x|-2.147.483.648<=x<=2.147.483.647}
+            - (posicion final - posicion inicial) + 1
+
+        - la definicion por enumeracion se puede hacer pero toma demasiado tiempo realizarlo {1,2,3,4,5}
+        - la cardinalidad de conjunto int es 4.294.967.296
+            - |int|=4.294.970.296
+            - 2^32 -> permutaciones
+
+        - que es una permutacion y una convinacion.
+
+
+
+     */
+
 
 }
