@@ -1,8 +1,5 @@
 package work.oscarramos.clase1;
 
-import java.util.Arrays;
-import java.util.function.Predicate;
-
 public class Arreglos {
     public static int sumarArreglo(int[] arreglo) {
         if (arreglo == null) return 0;
@@ -49,8 +46,8 @@ public class Arreglos {
         if (arreglo == null) {
             return null;
         }
-        int[] arregloMenores = menorQue(arreglo, numero);
-        int[] arregloMayores = mayorIgualQue(arreglo, numero);
+        int[] arregloMenores = menorMayorIgualQue(arreglo, numero, true);
+        int[] arregloMayores = menorMayorIgualQue(arreglo, numero, false);
 
         int[][] resultado = new int[2][];
 
@@ -59,30 +56,27 @@ public class Arreglos {
         return resultado;
     }
 
-    private static int[] menorQue(int[] arreghlo, int numero) {
-        int[] respuesta = new int[arreghlo.length];
+    private static int[] menorMayorIgualQue(int[] arreglo, int numero, boolean menor) {
+        int[] resultado = new int[arreglo.length];
         int idx = -1;
-        for (int elemento : arreghlo) {
-            if (elemento < numero) {
+        for (int elemento : arreglo) {
+            if (menor && elemento < numero || !menor && elemento >= numero) {
                 idx++;
-                respuesta[idx] = elemento;
+                resultado[idx] = elemento;
             }
         }
         if (idx < 0) return new int[0];
-        return Arrays.copyOfRange(respuesta, 0, idx + 1);
-    }
 
-    private static int[] mayorIgualQue(int[] arreghlo, int numero) {
-        int[] respuesta = new int[arreghlo.length];
-        int idx = -1;
-        for (int elemento : arreghlo) {
-            if (elemento >= numero) {
-                idx++;
-                respuesta[idx] = elemento;
-            }
+        int tamArray = idx + 1;
+        if (arreglo.length == (idx + 1)) {
+            tamArray = arreglo.length;
         }
-        if (idx < 0) return new int[0];
-        return Arrays.copyOfRange(respuesta, 0, idx + 1);
-    }
 
+        int[] respuesta = new int[tamArray];
+
+        for (int i = 0; i < respuesta.length; i++) {
+            respuesta[i] = resultado[i];
+        }
+        return respuesta;
+    }
 }
