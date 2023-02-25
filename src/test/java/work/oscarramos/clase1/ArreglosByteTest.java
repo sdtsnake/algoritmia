@@ -144,6 +144,20 @@ class ArreglosByteTest {
                 {new Byte((byte) 2), new byte[]{}}
         };
     }
+    @ParameterizedTest
+    @MethodSource
+    public void interseccionConjuntosTrueTest(byte[] arr1, byte[] arr2) {
+        assertEquals(true, ArreglosByte.siTieneInterseccion(arr1, arr2));
+    }
+
+    private static Object[][] interseccionConjuntosTrueTest() {
+        return new Object[][]{
+                {new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{1, 2, 4, 5, 6}},
+                {new byte[]{9,8,7,6,5,4,3,2,1}, new byte[]{6,7,8,9,10,11,12}}
+        };
+    }
+
+
 
 
 }

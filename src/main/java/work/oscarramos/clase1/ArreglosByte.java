@@ -16,7 +16,7 @@ public class ArreglosByte {
         return true;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Random r = new Random();
         for (int n = 0; n <= 8; n++) {
             int l = (int) (Math.pow(10, n));
@@ -29,7 +29,7 @@ public class ArreglosByte {
             long fin = System.nanoTime();
             System.out.println("n=%s r=%s t=%s".formatted(l, resultado, (fin - ini)));
             //System.out.println("%s, %s".formatted(l, (fin-ini)));
-        }
+        } */
         /*
             y = mx + b
             y = 2x + 2 ,y x : 2 0
@@ -39,7 +39,7 @@ public class ArreglosByte {
             - algoritmo que convierta un arrelo de bytes sea uyn conjunto
         */
 
-    }
+    //}
     /*
         Un arreglo se convierte en conjunto elminando los elemento repetidos.
      */
@@ -134,4 +134,21 @@ public class ArreglosByte {
 
         return false;
     }
+
+    public static boolean siTieneInterseccion(byte[] arr1, byte[] arr2) {
+        if(arr1==null && arr2==null) return false;
+        if(arr1.length==0 && arr2.length==0) return false;
+        if(arr1.length==0 || arr2.length==0) return false;
+
+        for (int i = 0; i < arr1.length; i++) {
+            for (int j = 0; j < arr2.length; j++) {
+                if(arr1[i]==arr2[j]) return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
 }
