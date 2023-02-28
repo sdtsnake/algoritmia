@@ -1,16 +1,9 @@
 package work.oscarramos.clase1;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 public class Clase1 {
 
-   // public static void main(String[] args) {
-        // atomicos
+    // public static void main(String[] args) {
+    // atomicos
         /*
             esenciales
             ==========
@@ -24,7 +17,7 @@ public class Clase1 {
             char
          */
 
-        // compuestos
+    // compuestos
         /*
             esenciales
             ==========
@@ -53,7 +46,7 @@ public class Clase1 {
                                         intentar buscar una respues a un problema sin solucion.
             - algoritmos y los que no son de decision -> son lo que se encarga de encontrar todas las solciones posibles a un problema
          */
-   // }
+    // }
 
     /*
 

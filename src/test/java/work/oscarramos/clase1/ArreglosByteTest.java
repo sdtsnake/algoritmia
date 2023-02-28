@@ -178,17 +178,6 @@ class ArreglosByteTest {
         };
     }
 
-    /*
-        funcion para saber si un conjunto esta dentro de otro de otro
-        funcion que determiene si dos conjuntos se interseptan.
-
-        funcion que retorne la interseccion de 2 conjuntos
-        funcion que retorne la union de dos conjuntos
-        funcion que retorne la diferencia de dos conjuntos.
-
-
-
-     */
     @ParameterizedTest
     @MethodSource
     public void interseccionConjuntosTrueTest(byte[] arr1, byte[] arr2) {
@@ -198,7 +187,10 @@ class ArreglosByteTest {
     private static Object[][] interseccionConjuntosTrueTest() {
         return new Object[][]{
                 {new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{1, 2, 4, 5, 6}},
+                {new byte[]{}, new byte[]{10, 9, 8, 7}},
+                {new byte[]{7,8,9,10}, new byte[]{}},
                 {new byte[]{10}, new byte[]{10}},
+                {new byte[]{}, new byte[]{}},
                 {new byte[]{1, 2, 3, 4}, new byte[]{1, 2, 3, 4}},
                 {new byte[]{9, 8, 7, 6, 5, 4, 3, 2, 1}, new byte[]{6, 7, 8, 9, 10, 11, 12}}
         };
@@ -213,10 +205,35 @@ class ArreglosByteTest {
     private static Object[][] interseccionConjuntosFalseTest() {
         return new Object[][]{
                 {new byte[]{2, 4, 5}, new byte[]{9, 8, 7, 6}},
-                {new byte[]{}, new byte[]{6, 7, 8, 9, 10, 11, 12}},
-                {new byte[]{6, 7, 8, 9, 10, 11, 12}, new byte[]{}},
-                {new byte[]{}, new byte[]{}},
+                {new byte[]{6, 7, 8, 9, 10, 11, 12}, new byte[]{1}},
                 {null, null}
         };
     }
+    @ParameterizedTest
+    @MethodSource
+    public void interseccionConjuntosTest(byte[] arr1, byte[] arr2, byte[] resultado) {
+        assertArrayEquals(resultado, ArreglosByte.Interseccion(arr1, arr2));
+    }
+
+    private static Object[][] interseccionConjuntosTest() {
+        return new Object[][]{
+                {new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{1, 2, 4, 5, 6},new byte[]{2, 4, 5}},
+                {new byte[]{}, new byte[]{10, 9, 8, 7},new byte[]{}},
+                {new byte[]{7,8,9,10}, new byte[]{},new byte[]{}},
+                {new byte[]{10}, new byte[]{10},new byte[]{10}},
+                {new byte[]{}, new byte[]{},new byte[]{}},
+                {new byte[]{1, 2, 3, 4}, new byte[]{1, 2, 3, 4},new byte[]{1, 2, 3, 4}},
+                {new byte[]{9, 8, 7, 6, 5, 4, 3, 2, 1}, new byte[]{6, 7, 8, 9},new byte[]{6,7,8,9}},
+                {null, null,null}
+        };
+    }
+
+
+        /*
+
+        funcion que retorne la interseccion de 2 conjuntos
+        funcion que retorne la union de dos conjuntos
+        funcion que retorne la diferencia de dos conjuntos.
+
+     */
 }
