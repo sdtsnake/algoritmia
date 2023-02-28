@@ -147,9 +147,7 @@ public class ArreglosByte {
                     break;
                 }
             }
-            if (elementoContenido) {
-                elementoContenido = false;
-            } else {
+            if (!elementoContenido) {
                 return false;
             }
         }
@@ -260,19 +258,6 @@ public class ArreglosByte {
             }
             if(!encontrado){
                 diferencia[idx] = arreglo1[i];
-                idx++;
-            }
-        }
-        for (int i = 0; i < arreglo2.length; i++) {
-            boolean encontrado = false;
-            for (int j = 0; j < arreglo1.length; j++) {
-                if (arreglo2[i] == arreglo1[j]) {
-                    encontrado = true;
-                    break;
-                }
-            }
-            if(!encontrado){
-                diferencia[idx] = arreglo2[i];
                 idx++;
             }
         }
