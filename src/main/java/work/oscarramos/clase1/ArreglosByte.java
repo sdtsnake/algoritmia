@@ -170,7 +170,7 @@ public class ArreglosByte {
         }
         return false;
     }
-    public static byte[] Interseccion(byte[] arreglo1, byte[] arreglo2) {
+    public static byte[] interseccion(byte[] arreglo1, byte[] arreglo2) {
         if (arreglo1 == null && arreglo2 == null) return null;
         if (arreglo1.length == 0 && arreglo2.length == 0) return new byte[]{};
         if (arreglo1.length == 0 || arreglo2.length == 0) return new byte[]{};
@@ -202,6 +202,41 @@ public class ArreglosByte {
 
         return resultado;
     }
+
+
+    public static byte[] union(byte[] arreglo1, byte[] arreglo2) {
+        if (arreglo1 == null && arreglo2 == null) return null;
+        if (arreglo1.length == 0 && arreglo2.length == 0) return new byte[]{};
+
+        int[] union = new int[arreglo1.length + arreglo2.length];
+
+        for (int i = 0; i < arreglo1.length; i++) {
+            union[i] = arreglo1[i];
+        }
+
+        int idx = arreglo1.length;
+        for (int i = 0; i < arreglo2.length; i++) {
+            boolean encontrado = false;
+            for (int j = 0; j < arreglo1.length; j++) {
+                if (arreglo2[i] == arreglo1[j]) {
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (!encontrado) {
+                union[idx] = arreglo2[i];
+                idx++;
+            }
+        }
+
+        byte[] resultado = new byte[idx];
+        for (int i = 0; i < idx; i++) {
+            resultado[i] = (byte)union[i];
+        }
+
+        return resultado;
+    }
+
 
 
 }
