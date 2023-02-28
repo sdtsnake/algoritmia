@@ -219,6 +219,7 @@ class ArreglosByteTest {
     private static Object[][] interseccionConjuntosTest() {
         return new Object[][]{
                 {new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{1, 2, 4, 5, 6}, new byte[]{2, 4, 5}},
+                {new byte[]{1, 2, 4, 5, 6}, new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{2, 4, 5}},
                 {new byte[]{}, new byte[]{10, 9, 8, 7}, new byte[]{}},
                 {new byte[]{7, 8, 9, 10}, new byte[]{}, new byte[]{}},
                 {new byte[]{10}, new byte[]{10}, new byte[]{10}},
@@ -237,6 +238,7 @@ class ArreglosByteTest {
 
     private static Object[][] unionConjuntosTest() {
         return new Object[][]{
+                {new byte[]{1, 2, 4, 5, 6}, new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{1, 2, 4, 5, 6, 0, 7, 8}},
                 {new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{1, 2, 4, 5, 6}, new byte[]{0, 2, 4, 5, 7, 8, 1, 6}},
                 {new byte[]{}, new byte[]{10, 9, 8, 7}, new byte[]{10, 9, 8, 7}},
                 {new byte[]{7, 8, 9, 10}, new byte[]{}, new byte[]{7, 8, 9, 10}},
@@ -248,12 +250,22 @@ class ArreglosByteTest {
         };
     }
 
+    @ParameterizedTest
+    @MethodSource
+    public void diferenciaConjuntosTest(byte[] arr1, byte[] arr2, byte[] resultado) {
+        assertArrayEquals(resultado, ArreglosByte.diferencia(arr1, arr2));
+    }
 
-        /*
-
-
-        funcion que retorne la union de dos conjuntos
-        funcion que retorne la diferencia de dos conjuntos.
-
-     */
+    private static Object[][] diferenciaConjuntosTest() {
+        return new Object[][]{
+                {new byte[]{6, 7, 8, 9, 10}, new byte[]{9, 8, 7, 6, 5, 4, 3, 2, 1}, new byte[]{10, 5, 4, 3, 2, 1}},
+                {new byte[]{9, 8, 7, 6, 5, 4, 3, 2, 1}, new byte[]{6, 7, 8, 9, 10}, new byte[]{5, 4, 3, 2, 1, 10}},
+                {new byte[]{10}, new byte[]{10}, new byte[]{}},
+                {new byte[]{1, 2, 3, 4}, new byte[]{1, 2, 3, 4}, new byte[]{}},
+                {new byte[]{7, 8, 9, 10}, new byte[]{}, new byte[]{7, 8, 9, 10}},
+                {new byte[]{}, new byte[]{10, 9, 8, 7}, new byte[]{10, 9, 8, 7}},
+                {new byte[]{}, new byte[]{}, new byte[]{}},
+                {null, null, null}
+        };
+    }
 }
