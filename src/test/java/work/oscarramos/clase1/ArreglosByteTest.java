@@ -213,7 +213,7 @@ class ArreglosByteTest {
     @ParameterizedTest
     @MethodSource
     public void interseccionConjuntosTest(byte[] arr1, byte[] arr2, byte[] resultado) {
-        assertArrayEquals(resultado, ArreglosByte.interseccion(arr1, arr2));
+        assertArrayEquals(resultado, ArreglosByte.interseccionConjuntos(arr1, arr2));
     }
 
     private static Object[][] interseccionConjuntosTest() {
@@ -233,7 +233,7 @@ class ArreglosByteTest {
     @ParameterizedTest
     @MethodSource
     public void unionConjuntosTest(byte[] arr1, byte[] arr2, byte[] resultado) {
-        assertArrayEquals(resultado, ArreglosByte.union(arr1, arr2));
+        assertArrayEquals(resultado, ArreglosByte.unionConjuntos(arr1, arr2));
     }
 
     private static Object[][] unionConjuntosTest() {
@@ -253,7 +253,7 @@ class ArreglosByteTest {
     @ParameterizedTest
     @MethodSource
     public void diferenciaConjuntosTest(byte[] arr1, byte[] arr2, byte[] resultado) {
-        assertArrayEquals(resultado, ArreglosByte.diferencia(arr1, arr2));
+        assertArrayEquals(resultado, ArreglosByte.diferenciaConjuntos(arr1, arr2));
     }
 
     private static Object[][] diferenciaConjuntosTest() {

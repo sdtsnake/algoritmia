@@ -175,7 +175,7 @@ public class ArreglosByte {
     /*
         Retorna los elementos que están contenidos en el conjunto A y B
      */
-    public static byte[] interseccion(byte[] arreglo1, byte[] arreglo2) {
+    public static byte[] interseccionConjuntos(byte[] arreglo1, byte[] arreglo2) {
         if (arreglo1 == null && arreglo2 == null) return null;
         if (arreglo1.length == 0 && arreglo2.length == 0) return new byte[]{};
         if (arreglo1.length == 0 || arreglo2.length == 0) return new byte[]{};
@@ -211,7 +211,7 @@ public class ArreglosByte {
         retorna la union de los conjutnos A y B en el cojunto C
      */
 
-    public static byte[] union(byte[] arreglo1, byte[] arreglo2) {
+    public static byte[] unionConjuntos(byte[] arreglo1, byte[] arreglo2) {
         if (arreglo1 == null && arreglo2 == null) return null;
         if (arreglo1.length == 0 && arreglo2.length == 0) return new byte[]{};
 
@@ -244,7 +244,7 @@ public class ArreglosByte {
         return resultado;
     }
 
-    public static byte[] diferencia(byte[] arreglo1, byte[] arreglo2) {
+    public static byte[] diferenciaConjuntos(byte[] arreglo1, byte[] arreglo2) {
         if (arreglo1 == null && arreglo2 == null) return null;
 
         int[] diferencia = new int[arreglo1.length + arreglo2.length];
