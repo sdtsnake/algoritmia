@@ -187,10 +187,7 @@ class ArreglosByteTest {
     private static Object[][] interseccionConjuntosTrueTest() {
         return new Object[][]{
                 {new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{1, 2, 4, 5, 6}},
-                {new byte[]{}, new byte[]{10, 9, 8, 7}},
-                {new byte[]{7, 8, 9, 10}, new byte[]{}},
                 {new byte[]{10}, new byte[]{10}},
-                {new byte[]{}, new byte[]{}},
                 {new byte[]{1, 2, 3, 4}, new byte[]{1, 2, 3, 4}},
                 {new byte[]{9, 8, 7, 6, 5, 4, 3, 2, 1}, new byte[]{6, 7, 8, 9, 10, 11, 12}}
         };
@@ -206,6 +203,9 @@ class ArreglosByteTest {
         return new Object[][]{
                 {new byte[]{2, 4, 5}, new byte[]{9, 8, 7, 6}},
                 {new byte[]{6, 7, 8, 9, 10, 11, 12}, new byte[]{1}},
+                {new byte[]{}, new byte[]{10, 9, 8, 7}},
+                {new byte[]{7, 8, 9, 10}, new byte[]{}},
+                {new byte[]{}, new byte[]{}},
                 {null, null}
         };
     }

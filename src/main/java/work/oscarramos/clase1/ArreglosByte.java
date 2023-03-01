@@ -159,8 +159,8 @@ public class ArreglosByte {
 
     public static boolean siTieneInterseccion(byte[] arr1, byte[] arr2) {
         if (arr1 == null && arr2 == null) return false;
-        if (arr1.length == 0 && arr2.length == 0) return true;
-        if (arr1.length == 0 || arr2.length == 0) return true;
+        if (arr1.length == 0 && arr2.length == 0) return false;
+        if (arr1.length == 0 || arr2.length == 0) return false;
 
         for (int i = 0; i < arr1.length; i++) {
             for (int j = 0; j < arr2.length; j++) {
