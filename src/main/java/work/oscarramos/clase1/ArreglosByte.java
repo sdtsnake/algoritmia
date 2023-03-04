@@ -108,7 +108,32 @@ public class ArreglosByte {
         }
         return true;
     }
+    /*     "byte" = {-128<=n<=127}
+    /*     "byte" = {-128<=n<=-1, 0, 1<=x<=127}
+           "byte[]" = {[5],[9],[6],[10],[],[100],[0],null,...} = {null} u {[5],[9],[6],[10],[],[100],[0],...}
+           {[5],[9],[6]} u {[10],[],[100],[0],...}
+           "byte[]" = {null} u {[]} u {[-128<=x<=127]} u {[-128<=x<=127,-128<=y<=127]}
+           "byte[]" = {null} u {[]} u {[x1,...xn|-127<=xi<=128]}
+           "byte[]" = {null, [] , [x1,...xn|0<=xi<=255]}
+           "byte X byte[]" = {(n,null),(n,[]),(n,[x1,...xn|-128<=xi<=127])}
+           "byte X byte[] X boolean" = {
+                                        (n,null,true),
+                                        (n,null,false),
+                                        (n,[],true),
+                                        (n,[],false),
+                                        (n,[x1,...xn|-128<=xi<=127],true),
+                                        (n,[x1,...xn|-128<=xi<=127],false)}
 
+            "elmentoEnConjunto" = {(n,null,false),(n,[],false),(n,[x1,...xn|-128<=xi<=127],true),(n,[x1,...xn|-128<=xi<=127],false)}
+
+            - Operaciones de conjuntos -> realizarlas a mano.
+            - Funciones matematicas -> leer del tema
+
+
+
+
+            interseccion: {}
+     */
     public static boolean elementoEnConjunto(byte numero, byte[] arr1) {
         if (arr1 == null) return false;
 
@@ -158,24 +183,29 @@ public class ArreglosByte {
      */
 
     public static boolean siTieneInterseccion(byte[] arr1, byte[] arr2) {
-        if (arr1 == null && arr2 == null) return false;
-        if (arr1.length == 0 && arr2.length == 0) return false;
+        if (arr1 == null || arr2 == null) return false;
         if (arr1.length == 0 || arr2.length == 0) return false;
 
-        for (int i = 0; i < arr1.length; i++) {
-            for (int j = 0; j < arr2.length; j++) {
-                if (arr1[i] == arr2[j]) return true;
+        if(arr1.length>arr2.length){
+            return verificaInterseccion(arr2,arr1);
+        }else{
+            return verificaInterseccion(arr1,arr2);
+        }
+    }
+
+    private static boolean verificaInterseccion(byte[] arrMenor, byte[] arrMayor) {
+        for (int i = 0; i < arrMenor.length; i++) {
+            for (int j = 0; j < arrMayor.length; j++) {
+                if (arrMenor[i] == arrMayor[j]) return true;
             }
         }
         return false;
     }
-
     /*
         Retorna los elementos que están contenidos en el conjunto A y B
      */
     public static byte[] interseccionConjuntos(byte[] arreglo1, byte[] arreglo2) {
-        if (arreglo1 == null && arreglo2 == null) return null;
-        if (arreglo1.length == 0 && arreglo2.length == 0) return new byte[]{};
+        if (arreglo1 == null || arreglo2 == null) return null;
         if (arreglo1.length == 0 || arreglo2.length == 0) return new byte[]{};
 
         if (arreglo1.length > arreglo2.length) {
@@ -186,7 +216,7 @@ public class ArreglosByte {
     }
 
     private static byte[] aramaInterseccion(byte[] arrMenor, byte[] arrMayor) {
-        int[] interseccion = new int[arrMayor.length + arrMenor.length];
+        byte[] interseccion = new byte[arrMayor.length];
         int idx = 0;
 
         for (int i = 0; i < arrMenor.length; i++) {
@@ -200,7 +230,7 @@ public class ArreglosByte {
 
         byte[] resultado = new byte[idx];
         for (int i = 0; i < idx; i++) {
-            resultado[i] = (byte)interseccion[i];
+            resultado[i] = interseccion[i];
         }
 
         return resultado;
@@ -210,10 +240,10 @@ public class ArreglosByte {
      */
 
     public static byte[] unionConjuntos(byte[] arreglo1, byte[] arreglo2) {
-        if (arreglo1 == null && arreglo2 == null) return null;
+        if (arreglo1 == null || arreglo2 == null) return null;
         if (arreglo1.length == 0 && arreglo2.length == 0) return new byte[]{};
 
-        int[] union = new int[arreglo1.length + arreglo2.length];
+        byte[] union = new byte[arreglo1.length + arreglo2.length];
 
         for (int i = 0; i < arreglo1.length; i++) {
             union[i] = arreglo1[i];
@@ -236,7 +266,7 @@ public class ArreglosByte {
 
         byte[] resultado = new byte[idx];
         for (int i = 0; i < idx; i++) {
-            resultado[i] = (byte) union[i];
+            resultado[i] = union[i];
         }
 
         return resultado;
@@ -245,7 +275,7 @@ public class ArreglosByte {
     public static byte[] diferenciaConjuntos(byte[] arreglo1, byte[] arreglo2) {
         if (arreglo1 == null && arreglo2 == null) return null;
 
-        int[] diferencia = new int[arreglo1.length + arreglo2.length];
+        byte[] diferencia = new byte[arreglo1.length];
         int idx = 0;
 
         for (int i = 0; i < arreglo1.length; i++) {
@@ -264,13 +294,10 @@ public class ArreglosByte {
 
         byte[] resultado = new byte[idx];
         for (int i = 0; i < idx; i++) {
-            resultado[i] = (byte)diferencia[i];
+            resultado[i] = diferencia[i];
         }
 
         return resultado;
     }
-
-
-
 
 }

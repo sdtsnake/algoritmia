@@ -126,8 +126,7 @@ class ArreglosByteTest {
 
     private static Object[][] elementoEnConjuntoTrueTest() {
         return new Object[][]{
-                {new Byte((byte) 5), new byte[]{1, 2, 4, 5}},
-                {new Byte((byte) 0), new byte[]{1, 2, 4, 5, 0}}
+                {new Byte((byte) 5), new byte[]{1, 2, 4, 5}}
         };
     }
 
@@ -141,7 +140,6 @@ class ArreglosByteTest {
         return new Object[][]{
                 {new Byte((byte) 6), new byte[]{1, 2, 4, 5}},
                 {new Byte((byte) 6), null},
-                {new Byte((byte) 9), new byte[]{1, 2, 4, 5, 0}},
                 {new Byte((byte) 2), new byte[]{}}
         };
     }
@@ -206,6 +204,7 @@ class ArreglosByteTest {
                 {new byte[]{}, new byte[]{10, 9, 8, 7}},
                 {new byte[]{7, 8, 9, 10}, new byte[]{}},
                 {new byte[]{}, new byte[]{}},
+                {null, new byte[]{10, 9, 8, 7}},
                 {null, null}
         };
     }

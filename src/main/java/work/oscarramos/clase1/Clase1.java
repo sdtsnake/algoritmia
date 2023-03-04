@@ -50,7 +50,7 @@ public class Clase1 {
 
     /*
 
-        Contar elementos de un conjunto
+        Contar elementos de un conjunto es la cantidad de elementos que tiene
         - cardinalidad de los booleanos cardinalidas 2 verdadero o false
             - booleanos por enumeracion : son verdadero o falso
             - {true,false}
@@ -66,6 +66,25 @@ public class Clase1 {
             - 2^32 -> permutaciones
 
         - que es una permutacion y una convinacion con ejemplos.
+
+
+
+     */
+
+    /*
+        Conjunto binario
+        combinacion del conjunto binario es : [1,0] [0] [1] -> es la secuencia de elementos no ordenados (el orden no importa)
+
+        Permutacion del conjunto binario es : [0,1] [1,0] -> es una representacion del conjunto ordenado.
+                                              (el orden importa) -> formula factorial de la cardinalidad de un conjunto
+                                              [2,1]
+
+        conjunto ternario : {a,b,c}           [3,2,1]
+                            {a,c,b}
+                            {b,a,c}
+                            {b,c,a}
+                            {c,a,b}
+                            {c,b,a}
 
 
 
