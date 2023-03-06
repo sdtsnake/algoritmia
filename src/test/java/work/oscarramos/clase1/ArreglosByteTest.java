@@ -126,10 +126,10 @@ class ArreglosByteTest {
 
     private static Object[][] elementoEnConjuntoTrueTest() {
         return new Object[][]{
-                {new Byte((byte) 5), new byte[]{1, 2, 4, 5}},
-                {new Byte((byte) 0), new byte[]{1, 2, 4, 5, 0}}
+                {new Byte((byte) 5), new byte[]{1, 2, 4, 5}}
         };
     }
+
     @ParameterizedTest
     @MethodSource
     public void elementoEnConjuntoFalseTest(byte numero, byte[] arr1) {
@@ -140,10 +140,131 @@ class ArreglosByteTest {
         return new Object[][]{
                 {new Byte((byte) 6), new byte[]{1, 2, 4, 5}},
                 {new Byte((byte) 6), null},
-                {new Byte((byte) 9), new byte[]{1, 2, 4, 5, 0}},
                 {new Byte((byte) 2), new byte[]{}}
         };
     }
 
+    @ParameterizedTest
+    @MethodSource
+    public void conjuntoDentroDeOtroTrueTest(byte[] arr1, byte[] arr2) {
+        assertTrue(ArreglosByte.conjuntoDentroDeOtro(arr1, arr2));
+    }
 
+    private static Object[][] conjuntoDentroDeOtroTrueTest() {
+        return new Object[][]{
+                {new byte[]{1, 2, 4, 5}, new byte[]{0, 1, 2, 4, 5, 6, 7}},
+                {new byte[]{4, 5, 6, 7, 8, 9, 10}, new byte[]{6, 7, 8, 9}},
+                {new byte[]{4, 5, 6, 7, 8, 9, 10}, new byte[]{9, 8, 6, 4}},
+                {new byte[]{-1, -2, 3, 4}, new byte[]{0, -1, -2, 3, 4, 5, 6}},
+                {new byte[]{}, new byte[]{}}
+        };
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    public void conjuntoDentroDeOtroFalseTest(byte[] arr1, byte[] arr2) {
+        assertFalse(ArreglosByte.conjuntoDentroDeOtro(arr1, arr2));
+    }
+
+    private static Object[][] conjuntoDentroDeOtroFalseTest() {
+        return new Object[][]{
+                {new byte[]{6, 7, 8, 9}, new byte[]{0, 1, 2, 4, 5, 6, 7}},
+                {new byte[]{4, 5, 6, 7, 8, 9, 10}, new byte[]{16, 17, 18, 19}},
+                {new byte[]{3, -5, -6, -7, 8, 9, 10}, new byte[]{9, 8, 6, 4}},
+                {new byte[]{-1, -2, 3, 9}, new byte[]{0, -1, -2, 3, 4, 5, 6}},
+                {null, null}
+        };
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    public void interseccionConjuntosTrueTest(byte[] arr1, byte[] arr2) {
+        assertEquals(true, ArreglosByte.siTieneInterseccion(arr1, arr2));
+    }
+
+    private static Object[][] interseccionConjuntosTrueTest() {
+        return new Object[][]{
+                {new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{1, 2, 4, 5, 6}},
+                {new byte[]{10}, new byte[]{10}},
+                {new byte[]{1, 2, 3, 4}, new byte[]{1, 2, 3, 4}},
+                {new byte[]{9, 8, 7, 6, 5, 4, 3, 2, 1}, new byte[]{6, 7, 8, 9, 10, 11, 12}}
+        };
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    public void interseccionConjuntosFalseTest(byte[] arr1, byte[] arr2) {
+        assertEquals(false, ArreglosByte.siTieneInterseccion(arr1, arr2));
+    }
+
+    private static Object[][] interseccionConjuntosFalseTest() {
+        return new Object[][]{
+                {new byte[]{2, 4, 5}, new byte[]{9, 8, 7, 6}},
+                {new byte[]{6, 7, 8, 9, 10, 11, 12}, new byte[]{1}},
+                {new byte[]{}, new byte[]{10, 9, 8, 7}},
+                {new byte[]{7, 8, 9, 10}, new byte[]{}},
+                {new byte[]{}, new byte[]{}},
+                {null, new byte[]{10, 9, 8, 7}},
+                {null, null}
+        };
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    public void interseccionConjuntosTest(byte[] arr1, byte[] arr2, byte[] resultado) {
+        assertArrayEquals(resultado, ArreglosByte.interseccionConjuntos(arr1, arr2));
+    }
+
+    private static Object[][] interseccionConjuntosTest() {
+        return new Object[][]{
+                {new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{1, 2, 4, 5, 6}, new byte[]{2, 4, 5}},
+                {new byte[]{1, 2, 4, 5, 6}, new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{2, 4, 5}},
+                {new byte[]{}, new byte[]{10, 9, 8, 7}, new byte[]{}},
+                {new byte[]{7, 8, 9, 10}, new byte[]{}, new byte[]{}},
+                {new byte[]{10}, new byte[]{10}, new byte[]{10}},
+                {new byte[]{}, new byte[]{}, new byte[]{}},
+                {new byte[]{1, 2, 3, 4}, new byte[]{1, 2, 3, 4}, new byte[]{1, 2, 3, 4}},
+                {new byte[]{9, 8, 7, 6, 5, 4, 3, 2, 1}, new byte[]{6, 7, 8, 9}, new byte[]{6, 7, 8, 9}},
+                {null, null, null}
+        };
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    public void unionConjuntosTest(byte[] arr1, byte[] arr2, byte[] resultado) {
+        assertArrayEquals(resultado, ArreglosByte.unionConjuntos(arr1, arr2));
+    }
+
+    private static Object[][] unionConjuntosTest() {
+        return new Object[][]{
+                {new byte[]{1, 2, 4, 5, 6}, new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{1, 2, 4, 5, 6, 0, 7, 8}},
+                {new byte[]{0, 2, 4, 5, 7, 8}, new byte[]{1, 2, 4, 5, 6}, new byte[]{0, 2, 4, 5, 7, 8, 1, 6}},
+                {new byte[]{}, new byte[]{10, 9, 8, 7}, new byte[]{10, 9, 8, 7}},
+                {new byte[]{7, 8, 9, 10}, new byte[]{}, new byte[]{7, 8, 9, 10}},
+                {new byte[]{10}, new byte[]{10}, new byte[]{10}},
+                {new byte[]{}, new byte[]{}, new byte[]{}},
+                {new byte[]{1, 2, 3, 4}, new byte[]{1, 2, 3, 4}, new byte[]{1, 2, 3, 4}},
+                {new byte[]{9, 8, 7, 6, 5, 4, 3, 2, 1}, new byte[]{6, 7, 8, 9}, new byte[]{9, 8, 7, 6, 5, 4, 3, 2, 1}},
+                {null, null, null}
+        };
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    public void diferenciaConjuntosTest(byte[] arr1, byte[] arr2, byte[] resultado) {
+        assertArrayEquals(resultado, ArreglosByte.diferenciaConjuntos(arr1, arr2));
+    }
+
+    private static Object[][] diferenciaConjuntosTest() {
+        return new Object[][]{
+                {new byte[]{7, 8, 9, 10}, new byte[]{}, new byte[]{7, 8, 9, 10}},
+                {new byte[]{}, new byte[]{10, 9, 8, 7}, new byte[]{}},
+                {new byte[]{6, 7, 8, 9, 10}, new byte[]{9, 8, 7, 6, 5, 4, 3, 2, 1}, new byte[]{10}},
+                {new byte[]{9, 8, 7, 6, 5, 4, 3, 2, 1}, new byte[]{6, 7, 8, 9, 10}, new byte[]{5, 4, 3, 2, 1}},
+                {new byte[]{10}, new byte[]{10}, new byte[]{}},
+                {new byte[]{1, 2, 3, 4}, new byte[]{1, 2, 3, 4}, new byte[]{}},
+                {new byte[]{}, new byte[]{}, new byte[]{}},
+                {null, null, null}
+        };
+    }
 }

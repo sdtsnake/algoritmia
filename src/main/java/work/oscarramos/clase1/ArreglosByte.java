@@ -1,7 +1,5 @@
 package work.oscarramos.clase1;
 
-import java.util.Random;
-
 public class ArreglosByte {
     public static boolean esConjuntoV1(byte[] arr) {
         if (arr == null) return false;
@@ -16,30 +14,16 @@ public class ArreglosByte {
         return true;
     }
 
-    public static void main(String[] args) {
-        Random r = new Random();
-        for (int n = 0; n <= 8; n++) {
-            int l = (int) (Math.pow(10, n));
-            byte[] arr = new byte[l];
-            for (int i = 0; i < l; i++) {
-                arr[i] = (byte) (Integer.MIN_VALUE + i);
-            }
-            long ini = System.nanoTime();
-            boolean resultado = esConjuntoV1(arr);
-            long fin = System.nanoTime();
-            System.out.println("n=%s r=%s t=%s".formatted(l, resultado, (fin - ini)));
-            //System.out.println("%s, %s".formatted(l, (fin-ini)));
-        }
         /*
             y = mx + b
             y = 2x + 2 ,y x : 2 0
 
             Conjuntos -> arreglos byte -128 a 127
             - algoritmo de decision para saber si es un conjunto
-            - algoritmo que convierta un arrelo de bytes sea uyn conjunto
+            - algoritmo que convierta un arrelo de bytes sea un conjunto
         */
 
-    }
+    //}
     /*
         Un arreglo se convierte en conjunto elminando los elemento repetidos.
      */
@@ -124,14 +108,196 @@ public class ArreglosByte {
         }
         return true;
     }
+    /*     "byte" = {-128<=n<=127}
+    /*     "byte" = {-128<=n<=-1, 0, 1<=x<=127}
+           "byte[]" = {[5],[9],[6],[10],[],[100],[0],null,...} = {null} u {[5],[9],[6],[10],[],[100],[0],...}
+           {[5],[9],[6]} u {[10],[],[100],[0],...}
+           "byte[]" = {null} u {[]} u {[-128<=x<=127]} u {[-128<=x<=127,-128<=y<=127]}
+           "byte[]" = {null} u {[]} u {[x1,...xn|-127<=xi<=128]}
+           "byte[]" = {null, [] , [x1,...xn|0<=xi<=255]}
+           "byte X byte[]" = {(n,null),(n,[]),(n,[x1,...xn|-128<=xi<=127])}
+           "byte X byte[] X boolean" = {
+                                        (n,null,true),
+                                        (n,null,false),
+                                        (n,[],true),
+                                        (n,[],false),
+                                        (n,[x1,...xn|-128<=xi<=127],true),
+                                        (n,[x1,...xn|-128<=xi<=127],false)}
 
+            "elmentoEnConjunto" = {(n,null,false),(n,[],false),(n,[x1,...xn|-128<=xi<=127],true),(n,[x1,...xn|-128<=xi<=127],false)}
+
+            - Operaciones de conjuntos -> realizarlas a mano.
+            - Funciones matematicas -> leer del tema
+
+
+
+
+            interseccion: {}
+     */
     public static boolean elementoEnConjunto(byte numero, byte[] arr1) {
-        if(arr1==null) return false;
+        if (arr1 == null) return false;
 
         for (int i = 0; i < arr1.length; i++) {
-            if(arr1[i]==numero) return true;
+            if (arr1[i] == numero) return true;
         }
 
         return false;
     }
+
+    /*}
+        algoritmo para determinar si A esta contenido en B o viceversa
+     */
+
+    public static boolean conjuntoDentroDeOtro(byte[] arreglo1, byte[] arreglo2) {
+        if (arreglo1 == null && arreglo2 == null) return false;
+        if (arreglo1.length == 0 && arreglo2.length == 0) return true;
+
+
+        if (arreglo1.length > arreglo2.length) {
+            if (!verificaContenido(arreglo2, arreglo1)) return false;
+        } else {
+            if (!verificaContenido(arreglo1, arreglo2)) return false;
+        }
+
+        return true;
+    }
+
+    private static boolean verificaContenido(byte[] arrMenor, byte[] arrMayor) {
+
+        for (int i = 0; i < arrMenor.length; i++) {
+            boolean elementoContenido = false;
+            for (int j = 0; j < arrMayor.length; j++) {
+                if (arrMenor[i] == arrMayor[j]) {
+                    elementoContenido = true;
+                    break;
+                }
+            }
+            if (!elementoContenido) {
+                return false;
+            }
+        }
+        return true;
+    }
+    /*
+        algoritmo que determina hay interseccion entre el conjunto A y B
+     */
+
+    public static boolean siTieneInterseccion(byte[] arr1, byte[] arr2) {
+        if (arr1 == null || arr2 == null) return false;
+        if (arr1.length == 0 || arr2.length == 0) return false;
+
+        if(arr1.length>arr2.length){
+            return verificaInterseccion(arr2,arr1);
+        }else{
+            return verificaInterseccion(arr1,arr2);
+        }
+    }
+
+    private static boolean verificaInterseccion(byte[] arrMenor, byte[] arrMayor) {
+        for (int i = 0; i < arrMenor.length; i++) {
+            for (int j = 0; j < arrMayor.length; j++) {
+                if (arrMenor[i] == arrMayor[j]) return true;
+            }
+        }
+        return false;
+    }
+    /*
+        Retorna los elementos que están contenidos en el conjunto A y B
+     */
+    public static byte[] interseccionConjuntos(byte[] arreglo1, byte[] arreglo2) {
+        if (arreglo1 == null || arreglo2 == null) return null;
+        if (arreglo1.length == 0 || arreglo2.length == 0) return new byte[]{};
+
+        if (arreglo1.length > arreglo2.length) {
+            return (aramaInterseccion(arreglo2, arreglo1));
+        } else {
+            return (aramaInterseccion(arreglo1, arreglo2));
+        }
+    }
+
+    private static byte[] aramaInterseccion(byte[] arrMenor, byte[] arrMayor) {
+        byte[] interseccion = new byte[arrMayor.length];
+        int idx = 0;
+
+        for (int i = 0; i < arrMenor.length; i++) {
+            for (int j = 0; j < arrMayor.length; j++) {
+                if (arrMenor[i] == arrMayor[j]) {
+                    interseccion[idx] = arrMayor[j];
+                    idx++;
+                }
+            }
+        }
+
+        byte[] resultado = new byte[idx];
+        for (int i = 0; i < idx; i++) {
+            resultado[i] = interseccion[i];
+        }
+
+        return resultado;
+    }
+    /*
+        retorna la union de los conjutnos A y B en el cojunto C
+     */
+
+    public static byte[] unionConjuntos(byte[] arreglo1, byte[] arreglo2) {
+        if (arreglo1 == null || arreglo2 == null) return null;
+        if (arreglo1.length == 0 && arreglo2.length == 0) return new byte[]{};
+
+        byte[] union = new byte[arreglo1.length + arreglo2.length];
+
+        for (int i = 0; i < arreglo1.length; i++) {
+            union[i] = arreglo1[i];
+        }
+
+        int idx = arreglo1.length;
+        for (int i = 0; i < arreglo2.length; i++) {
+            boolean encontrado = false;
+            for (int j = 0; j < arreglo1.length; j++) {
+                if (arreglo2[i] == arreglo1[j]) {
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (!encontrado) {
+                union[idx] = arreglo2[i];
+                idx++;
+            }
+        }
+
+        byte[] resultado = new byte[idx];
+        for (int i = 0; i < idx; i++) {
+            resultado[i] = union[i];
+        }
+
+        return resultado;
+    }
+
+    public static byte[] diferenciaConjuntos(byte[] arreglo1, byte[] arreglo2) {
+        if (arreglo1 == null && arreglo2 == null) return null;
+
+        byte[] diferencia = new byte[arreglo1.length];
+        int idx = 0;
+
+        for (int i = 0; i < arreglo1.length; i++) {
+            boolean encontrado = false;
+            for (int j = 0; j < arreglo2.length; j++) {
+                if (arreglo1[i] == arreglo2[j]) {
+                    encontrado = true;
+                    break;
+                }
+            }
+            if(!encontrado){
+                diferencia[idx] = arreglo1[i];
+                idx++;
+            }
+        }
+
+        byte[] resultado = new byte[idx];
+        for (int i = 0; i < idx; i++) {
+            resultado[i] = diferencia[i];
+        }
+
+        return resultado;
+    }
+
 }
